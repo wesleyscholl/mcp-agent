@@ -1,6 +1,22 @@
 from jira_connector import JiraConnector
 from github_agent import GitHubAgent
 from repo_context_loader import RepoContextLoader
+from gemini_coder import GeminiCoder
+
+gemini = GeminiCoder(api_key=os.getenv("GEMINI_API_KEY"))
+
+# 1. Get prompt from RepoContextLoader
+prompt = loader.build_prompt(summary, description, snippets)
+
+# 2. Generate code
+generated_code = gemini.generate_code(prompt)
+
+# 3. Write it to file
+output_path = gemini.write_code_to_file(
+    output_code=generated_code,
+    repo_path=repo_path,
+    relative_path="feature/BUG-123_fix.py"
+)
 
 loader = RepoContextLoader(repo_path="./repos/BUG-123")
 files = loader.list_files()
