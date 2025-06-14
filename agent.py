@@ -2,6 +2,29 @@ from jira_connector import JiraConnector
 from github_agent import GitHubAgent
 from repo_context_loader import RepoContextLoader
 from gemini_coder import GeminiCoder
+from mcp_context_store import MCPContextStore
+import os
+
+store = MCPContextStore(db_url=os.getenv("POSTGRES_URL"))
+
+# Insert or update full context
+store.insert_or_update_context(
+    ticket_id="BUG-123",
+    repo_url="https://github.com/org/repo.git",
+    branch_name="feature/BUG-123",
+    summary="Fix login timeout",
+    description="Login session times out after 30s of inactivity"
+)
+
+# Update just status
+store.update_status("BUG-123", "in_progress")
+
+# Update just PR link
+store.update_pr_url("BUG-123", "https://github.com/org/repo/pull/42")
+
+# Retrieve current context
+ctx = store.get_context("BUG-123")
+print(ctx)
 
 gemini = GeminiCoder(api_key=os.getenv("GEMINI_API_KEY"))
 
