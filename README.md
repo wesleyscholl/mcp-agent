@@ -1,5 +1,7 @@
 # mcp-agent
 
+## A Github/Jira MCP Agent 
+
 ```mermaid
 graph TD
     subgraph AI Agent
