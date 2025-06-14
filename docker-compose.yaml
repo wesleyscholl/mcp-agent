@@ -1,0 +1,37 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: mcp
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: devpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  mcp-github:
+    build: ./mcp-github-server
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./mcp-github-server/.env
+
+  mcp-jira:
+    build: ./mcp-jira-server
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./mcp-jira-server/.env
+
+  agent:
+    build: ./agent
+    env_file: .env
+    depends_on:
+      - postgres
+      - mcp-github
+      - mcp-jira
+
+volumes:
+  pgdata:
