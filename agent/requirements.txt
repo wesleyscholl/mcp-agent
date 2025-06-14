@@ -1,0 +1,18 @@
+# Core
+requests
+python-dotenv
+
+# PostgreSQL
+psycopg2-binary
+
+# LLM
+google-generativeai
+
+# Git operations
+gitpython
+
+# Optional (if you want to use JIRA Python SDK directly instead of just MCP API)
+jira
+
+# Optional: better dev/debug logging
+rich
