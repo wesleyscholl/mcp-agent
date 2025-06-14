@@ -1,5 +1,18 @@
 from jira_connector import JiraConnector
 from github_agent import GitHubAgent
+from repo_context_loader import RepoContextLoader
+
+loader = RepoContextLoader(repo_path="./repos/BUG-123")
+files = loader.list_files()
+snippets = loader.extract_snippets(files)
+
+prompt = loader.build_prompt(
+    summary="Fix login timeout after 30s",
+    description="When users are idle for 30s, session expires too early. Adjust the timeout logic in the auth layer.",
+    snippets=snippets
+)
+
+# Now send `prompt` to Gemini
 
 github = GitHubAgent(mcp_github_url="http://localhost:4000")  # Adjust port if needed
 
