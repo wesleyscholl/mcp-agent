@@ -1,5 +1,7 @@
 # mcp-agent
 
+**Status**: Multi-agent system with MCP integration - orchestrating AI-powered development workflows across GitHub and Jira platforms.
+
 ## A Github/Jira MCP Agent 
 
 ```mermaid

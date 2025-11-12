@@ -1,8 +1,12 @@
 import psycopg2
+import os
 from datetime import datetime
+
+
 
 class MCPContextStore:
     def __init__(self, db_url: str):
+        db_url = os.getenv("POSTGRES_URL")
         self.conn = psycopg2.connect(db_url)
         self.conn.autocommit = True
 

@@ -1,11 +1,11 @@
 import os
 from dotenv import load_dotenv
 
-from jira_connector import JiraConnector
-from github_agent import GitHubAgent
-from repo_context_loader import RepoContextLoader
-from gemini_coder import GeminiCoder
-from mcp_context_store import MCPContextStore
+from mcp.jira_connector import JiraConnector
+from mcp.github_agent import GitHubAgent
+from context.repo_context_loader import RepoContextLoader
+from coders.gemini_coder import GeminiCoder
+from context.mcp_context_store import MCPContextStore
 
 # Load environment variables
 load_dotenv()
